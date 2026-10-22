@@ -170,17 +170,7 @@
 
 {%- if show_marquee and marquee_position == 'top' -%}
 <section class="border-t-grid border-grid-color" {{ marquee_shopify_attributes }}>
-  {% render 'marquee' with
-    id: section.id
-    text_size_class: marquee_text_size_class,
-    speed_number: marquee_speed_number,
-    link: marquee_link,
-    text: marquee_text,
-    font: marquee_font,
-    section_color: marquee_section_color,
-    direction: marquee_direction,
-    marquee_repeat_text: marquee_repeat_text
-  %}
+  {% render 'marquee' with id, id: section.id, text_size_class: marquee_text_size_class, speed_number: marquee_speed_number, link: marquee_link, text: marquee_text, font: marquee_font, section_color: marquee_section_color, direction: marquee_direction, marquee_repeat_text: marquee_repeat_text %}
 </section>
 {%- endif -%}
 {% paginate collection.products by product_limit %}
@@ -207,10 +197,7 @@
       {% if show_image and collection.image %}
         <div class="{{ image_width_desktop }} bg-scheme-background {% unless settings.fill_image_to_border_edge %}p-2 lg:p-4 h-full w-full{% endunless %}">
           <div class="relative min-h-full {% if indent_image %}p-8 lg:p-16{% endif %}">
-            {% render 'image-crop' with
-              image: collection.image,
-              ratio: ratio
-            %}
+            {% render 'image-crop' with image, image: collection.image, ratio: ratio %}
           </div>
         </div>
       {% endif %}
@@ -229,17 +216,7 @@
 
   {%- if show_marquee and marquee_position == 'under_title' -%}
     <aside class="border-b-grid border-grid-color" {{ marquee_shopify_attributes }}>
-      {% render 'marquee' with
-        id: section.id
-        text_size_class: marquee_text_size_class,
-        speed_number: marquee_speed_number,
-        link: marquee_link,
-        text: marquee_text,
-        font: marquee_font,
-        section_color: marquee_section_color,
-        direction: marquee_direction,
-        marquee_repeat_text: marquee_repeat_text
-      %}
+      {% render 'marquee' with id, id: section.id, text_size_class: marquee_text_size_class, speed_number: marquee_speed_number, link: marquee_link, text: marquee_text, font: marquee_font, section_color: marquee_section_color, direction: marquee_direction, marquee_repeat_text: marquee_repeat_text %}
     </aside>
     {%- endif -%}
 
@@ -475,17 +452,7 @@
             {%- if show_marquee and marquee_position == 'after_row' and counter == products_per_row -%}
             <li class="col-span-full" {{ marquee_shopify_attributes }}>
               <aside>
-                {% render 'marquee' with
-                  id: section.id
-                  text_size_class: marquee_text_size_class,
-                  speed_number: marquee_speed_number,
-                  link: marquee_link,
-                  text: marquee_text,
-                  font: marquee_font,
-                  section_color: marquee_section_color,
-                  direction: marquee_direction,
-                  marquee_repeat_text: marquee_repeat_text
-                %}
+                {% render 'marquee' with id, id: section.id, text_size_class: marquee_text_size_class, speed_number: marquee_speed_number, link: marquee_link, text: marquee_text, font: marquee_font, section_color: marquee_section_color, direction: marquee_direction, marquee_repeat_text: marquee_repeat_text %}
               </aside>
             </li>
             {%- endif -%}
@@ -517,7 +484,7 @@
         <p class="section-x-padding py-theme">{{ 'collections.general.no_matches' | t }}.</p>
       {%- endif -%}
       {% if paginate.pages > 1 %}
-        {% render 'pagination' with paginate: paginate, section_color: section_color %}
+        {% render 'pagination' with paginate, paginate: paginate, section_color: section_color %}
       {% endif %}
     </div>
 
@@ -847,3 +814,73 @@
     ]
   }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {% render 'marquee' with
+        id: section.id
+        text_size_class: marquee_text_size_class,
+        speed_number: marquee_speed_number,
+        link: marquee_link,
+        text: marquee_text,
+        font: marquee_font,
+        section_color: marquee_section_color,
+        direction: marquee_direction,
+        marquee_repeat_text: marquee_repeat_text
+      %}
+  to: "{% render 'marquee' with id, id: section.id, text_size_class: marquee_text_size_class,
+    speed_number: marquee_speed_number, link: marquee_link, text: marquee_text, font:
+    marquee_font, section_color: marquee_section_color, direction: marquee_direction,
+    marquee_repeat_text: marquee_repeat_text %}"
+  position: 6301..6595
+- from: |-
+    {% render 'image-crop' with
+                  image: collection.image,
+                  ratio: ratio
+                %}
+  to: "{% render 'image-crop' with image, image: collection.image, ratio: ratio %}"
+  position: 8300..8375
+- from: |-
+    {% render 'marquee' with
+            id: section.id
+            text_size_class: marquee_text_size_class,
+            speed_number: marquee_speed_number,
+            link: marquee_link,
+            text: marquee_text,
+            font: marquee_font,
+            section_color: marquee_section_color,
+            direction: marquee_direction,
+            marquee_repeat_text: marquee_repeat_text
+          %}
+  to: "{% render 'marquee' with id, id: section.id, text_size_class: marquee_text_size_class,
+    speed_number: marquee_speed_number, link: marquee_link, text: marquee_text, font:
+    marquee_font, section_color: marquee_section_color, direction: marquee_direction,
+    marquee_repeat_text: marquee_repeat_text %}"
+  position: 9121..9415
+- from: |-
+    {% render 'marquee' with
+                      id: section.id
+                      text_size_class: marquee_text_size_class,
+                      speed_number: marquee_speed_number,
+                      link: marquee_link,
+                      text: marquee_text,
+                      font: marquee_font,
+                      section_color: marquee_section_color,
+                      direction: marquee_direction,
+                      marquee_repeat_text: marquee_repeat_text
+                    %}
+  to: "{% render 'marquee' with id, id: section.id, text_size_class: marquee_text_size_class,
+    speed_number: marquee_speed_number, link: marquee_link, text: marquee_text, font:
+    marquee_font, section_color: marquee_section_color, direction: marquee_direction,
+    marquee_repeat_text: marquee_repeat_text %}"
+  position: 24229..24523
+- from: "{% render 'pagination' with paginate: paginate, section_color: section_color
+    %}"
+  to: "{% render 'pagination' with paginate, paginate: paginate, section_color: section_color
+    %}"
+  position: 26286..26375
+{% endcomment %}

@@ -133,7 +133,7 @@
             {%- if section.settings.social_title != blank %}
               <h2 class="font-heading text-base mb-4">{{ section.settings.social_title }}</h2>
             {% endif %}
-            {% render 'footer-social-links' with social_style: social_style, link_class: "mb-1", section_color: section_color %}
+            {% render 'footer-social-links' with social_style, social_style: social_style, link_class: "mb-1", section_color: section_color %}
           </div>
         </div>
       {% endif %}
@@ -392,3 +392,15 @@
   }
 
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: '{% render ''footer-social-links'' with social_style: social_style, link_class:
+    "mb-1", section_color: section_color %}'
+  to: '{% render ''footer-social-links'' with social_style, social_style: social_style,
+    link_class: "mb-1", section_color: section_color %}'
+  position: 5809..5939
+{% endcomment %}
